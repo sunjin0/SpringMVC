@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.dao.UserMapper">
+    <!--增加一个User-->
+    <insert id="addUser" parameterType="user">
+       insert into mybatis.user(pwd, name) VALUE (#{pwd},#{name})
+    </insert>
+
+    <!--根据id删除一个User-->
+    <delete id="deleteUserById" parameterType="int">
+        delete from mybatis.user where id=#{id}
+    </delete>
+
+    <!--更新User-->
+    <update id="updateUser" parameterType="user">
+        update mybatis.user
+        set name= #{name},pwd = #{pwd}
+        where id= #{id}
+    </update>
+
+    <!--根据查询,返回一个User-->
+    <select id="queryUser" parameterType="map" resultType="user">
+        select * from mybatis.user
+        where name=#{name} and pwd=#{pwd}
+    </select>
+
+    <select id="queryAdmit" parameterType="map" resultType="user">
+    select *from mybatis.admin where name=#{name} and pwd=#{pwd}
+    </select>
+    <!--查询全部Book-->
+    <select id="queryAllUser" resultType="user">
+        SELECT * from mybatis.user
+    </select>
+</mapper>
